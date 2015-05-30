@@ -72,9 +72,9 @@ def main():
            }
   algname   = configs[0]['algname']
   rwprob   = probs[args.probname](configs[0])
-  perf      = PerformanceMeasure(configs[0], rwprob)
   print("Running algorithm " + algname + " on problem " + args.probname + ", runseed: " + str(args.run) )
   for config in configs:
+    perf      = PerformanceMeasure(configs[0], rwprob)
     alg            = algs[algname](config)
     config['runseed'] = args.run
     runoneconfig(config, rwprob, alg, perf)
