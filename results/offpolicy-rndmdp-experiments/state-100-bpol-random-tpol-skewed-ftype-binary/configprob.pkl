@@ -5,7 +5,7 @@ S'random'
 p3
 sS'numzerogs'
 p4
-I20
+I5
 sS'N'
 I5000
 sS'Rstd'

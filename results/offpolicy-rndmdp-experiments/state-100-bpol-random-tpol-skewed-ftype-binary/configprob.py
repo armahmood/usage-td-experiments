@@ -10,7 +10,7 @@ def main():
                    {
                    'Gamma'      : gamma,
                    'ftype'      : 'binary',
-                   'numzerogs'  : 20,
+                   'numzerogs'  : 5,
                    'T'          : N,
                    'N'          : N,
                    'ns'         : ns,

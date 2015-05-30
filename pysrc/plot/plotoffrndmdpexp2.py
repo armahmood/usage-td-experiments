@@ -14,12 +14,12 @@ import matplotlib.pyplot as ppl
 import pickle
 
 def plotonealg(algname, nparams, params, nparamssub, paramssub):
-  path = "./results/offpolicy-rndmdp-experiments/state-10-bpol-random-tpol-skewed-ftype-binary/"+algname+"/"
+  path = "./results/offpolicy-rndmdp-experiments/state-100-bpol-random-tpol-skewed-ftype-binary/"+algname+"/"
   if not os.path.exists(path):
     path = "../."+path
   pathfileprefix      = path+"mdpseed_1000_runseed_"
   plotfilesuffix      = "perfvs"+paramssub[-1]+".plot"
-  nruns               = 5
+  nruns               = 10
   #if not os.path.isfile(pathfileprefix+plotfilesuffix):
   plotdataprocess.main2(nruns, pathfileprefix, nparams, params, nparamssub, paramssub, 0)
   oisdata   = pickle.load(file(pathfileprefix+plotfilesuffix))
@@ -28,17 +28,17 @@ def plotonealg(algname, nparams, params, nparamssub, paramssub):
 def main():
 
   plotonealg("gtd", 3, ["alpha", "beta", "lmbda"], 1, ["lmbda"])
-#   plotonealg("togtd", 3, ["alpha", "beta", "lmbda"], 1, ["lmbda"])
-#   plotonealg("wtd", 3, ["eta", "initd", "lmbda"], 1, ["lmbda"])
-#   plotonealg("wgtd", 4, ["eta", "initd", "beta", "lmbda"], 1, ["lmbda"])
-#   plotonealg("wtogtd", 4, ["eta", "initd", "beta", "lmbda"], 1, ["lmbda"])
-#   plotonealg("oislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
-#   plotonealg("wislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
-#   plotonealg("olstd2", 2, ["inita", "lmbda"], 1, ["lmbda"])
-  ppl.ylim([0.01, 10])
-  ppl.yscale('log')
+  plotonealg("togtd", 3, ["alpha", "beta", "lmbda"], 1, ["lmbda"])
+  plotonealg("wtd", 3, ["eta", "initd", "lmbda"], 1, ["lmbda"])
+  plotonealg("wgtd", 4, ["eta", "initd", "beta", "lmbda"], 1, ["lmbda"])
+  plotonealg("wtogtd", 4, ["eta", "initd", "beta", "lmbda"], 1, ["lmbda"])
+  plotonealg("oislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
+  plotonealg("wislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
+  plotonealg("olstd2", 2, ["inita", "lmbda"], 1, ["lmbda"])
+  ppl.ylim([0.1, .26])
+  #ppl.yscale('log')
   #ppl.xscale('log')
-  ppl.legend()
+  #ppl.legend()
   #ppl.savefig('tmp.png')
   
 if __name__ == '__main__':
