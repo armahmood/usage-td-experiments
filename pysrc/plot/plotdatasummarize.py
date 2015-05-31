@@ -22,17 +22,19 @@ def main():
   data        = []
   try:
     while True:
-      d            = pickle.load(f1)
-      error        = d['error']
-      T            = len(error)
-      d['error']   = np.mean(np.reshape(error, (T/N, N), 1), 0)
+      d             = pickle.load(f1)
+      error         = d['error']
+      T             = len(error)
+      d['error']    = np.mean(np.reshape(error, (T/N, N), 1), 0)
+      d['N']        = N
       data.append(d)
   except EOFError:
     print 'End of file reached'
   f1.close()
   f2    = open(pathfile2, "wb")
   for i in range(len(data)):
-    pickle.dump(data[i], f2)
+    data[i]['Gamma'] = np.diag(data[i]['Gamma'])
+    pickle.dump(data[i], f2, -1)
   f2.close()
 
 if __name__ == '__main__':
