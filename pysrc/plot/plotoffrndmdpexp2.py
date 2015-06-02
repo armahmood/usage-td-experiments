@@ -12,14 +12,15 @@ import matplotlib
 #matplotlib.use('Agg')
 import matplotlib.pyplot as ppl
 import pickle
+import numpy as np
 
 def plotonealg(algname, nparams, params, nparamssub, paramssub):
   path = "./results/offpolicy-rndmdp-experiments/state-100-bpol-random-tpol-skewed-ftype-binary/"+algname+"/"
   if not os.path.exists(path):
     path = "../."+path
-  pathfileprefix      = path+"mdpseed_1000_runseed_"
+  pathfileprefix      = path+"mdpseed_1000_summarized100_"
   plotfilesuffix      = "perfvs"+paramssub[-1]+".plot"
-  nruns               = 10
+  nruns               = 50
   #if not os.path.isfile(pathfileprefix+plotfilesuffix):
   plotdataprocess.main2(nruns, pathfileprefix, nparams, params, nparamssub, paramssub, 0)
   oisdata   = pickle.load(file(pathfileprefix+plotfilesuffix))
@@ -34,8 +35,8 @@ def main():
   plotonealg("wtogtd", 4, ["eta", "initd", "beta", "lmbda"], 1, ["lmbda"])
   plotonealg("oislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
   plotonealg("wislstd", 2, ["inita", "lmbda"], 1, ["lmbda"])
-  plotonealg("olstd2", 2, ["inita", "lmbda"], 1, ["lmbda"])
-  ppl.ylim([0.1, .26])
+  plotonealg("olstd2-original", 2, ["inita", "lmbda"], 1, ["lmbda"])
+  ppl.ylim([0.1, 0.3])
   #ppl.yscale('log')
   #ppl.xscale('log')
   #ppl.legend()

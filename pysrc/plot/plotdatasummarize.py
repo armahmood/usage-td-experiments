@@ -33,7 +33,8 @@ def main():
   f1.close()
   f2    = open(pathfile2, "wb")
   for i in range(len(data)):
-    data[i]['Gamma'] = np.diag(data[i]['Gamma'])
+    if 'Gamma' in data[i] and len(data[i]['Gamma'])==2:
+      data[i]['Gamma'] = np.diag(data[i]['Gamma'])
     pickle.dump(data[i], f2, -1)
   f2.close()
 
