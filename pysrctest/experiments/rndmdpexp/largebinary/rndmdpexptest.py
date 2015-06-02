@@ -15,10 +15,10 @@ class Test(unittest.TestCase):
     dirpath   = "./pysrctest/experiments/rndmdpexp/largebinary/"
     dirpath   = "" if not os.path.isdir(dirpath) else dirpath
 
-    sys.argv  = ["", "1000", "binary", "1", dirpath]
+    sys.argv  = ["", "1000", "1", dirpath, "tdr"]
     rndmdpexp.main()
-    data        = pickle.load(open(dirpath+"mdpseed_1000_ftype_binary_runseed_1.dat", "rb"))
-    groundtruth = pickle.load(open(dirpath+"exp1_TDR__mdpseed_1000_runseed_1_conf_config_binary_large.dat_alphaindex_0_lmbdaindex_0", "rb"))
+    data        = pickle.load(open(dirpath+"tdr"+"/mdpseed_1000_runseed_1.dat", "rb"))
+    groundtruth = pickle.load(open(dirpath+"tdr"+"/exp1_TDR__mdpseed_1000_runseed_1_conf_config_binary_large.dat_alphaindex_0_lmbdaindex_0", "rb"))
     print data['error']
     print groundtruth['TDRMSPVE']
     assert(abs(groundtruth['TDRMSPVE']-data['error'])<0.005)

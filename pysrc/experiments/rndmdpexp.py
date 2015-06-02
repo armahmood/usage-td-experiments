@@ -31,17 +31,21 @@ def runoneconfig(config, prob, alg, perf):
 def main():
   parser          = argparse.ArgumentParser()
   parser.add_argument("mdpseed", help="used as a seed to generate a random MDP", type=int)
-  parser.add_argument("ftype", help="Type of feature representations: tabular/binary/normal")
   parser.add_argument("runseed", help="used as a seed of an independent run", type=int)
-  parser.add_argument("path", help="location of the config file")
+  parser.add_argument("path", help="location of the result folder")
+  parser.add_argument("algname", help="name of the algorithm")
   args = parser.parse_args()
-  configpathname  = args.path + "config.pkl"
-  cf              = open(configpathname, 'rb')
-  configs         = pickle.load(cf)  
+  
+  configprobpathname  = args.path + "configprob.pkl"
+  cf              = open(configprobpathname, 'rb')
+  configprob      = pickle.load(cf)  
+
+  configalgpathname  = args.path + args.algname + "/configalg.pkl"
+  cf              = open(configalgpathname, 'rb')
+  configsalg      = pickle.load(cf)
     
-  filepathname  = args.path   +\
-                  "mdpseed_"  + str(args.mdpseed)   + "_"\
-                  "ftype_"    + str(args.ftype) + "_"\
+  filepathname  = args.path + args.algname   +\
+                  "/mdpseed_"  + str(args.mdpseed)   + "_"\
                   "runseed_"  + str(args.runseed)   +\
                   ".dat"
   f             = open(filepathname, 'wb')
@@ -51,20 +55,16 @@ def main():
            'tdr':tdr.TDR,
            'totd':totd.TOTD,
            }
-  algname               = configs[0]['algname']
-  probconfig            = copy.copy(configs[0])
-  probconfig['mdpseed'] = args.mdpseed
-  probconfig['ftype']   = args.ftype
-  rwprob1                  = randommdp.RandomMDP(probconfig)
+  configprob['mdpseed'] = args.mdpseed
+  prob                  = randommdp.RandomMDP(configprob)
 
-  print("Running algorithm " + algname + ", runseed: " + str(args.runseed) )
-  for config in configs:
-    perf      = mdp.PerformanceMeasure(probconfig, rwprob1)
-    config['ftype']       = args.ftype
-    config['nf']          = rwprob1.nf
-    alg                   = algs[algname](config)
+  print("Running algorithm " + args.algname + ", runseed: " + str(args.runseed) )
+  for config in configsalg:
+    perf      = mdp.PerformanceMeasure(configprob, prob)
+    config.update(configprob)
+    alg                   = algs[args.algname](config)
     config['runseed']     = args.runseed
-    runoneconfig(config, rwprob1, alg, perf)
+    runoneconfig(config, prob, alg, perf)
     config['error']      = perf.getNormMSPVE()
     pickle.dump(config, f, -1)
 
