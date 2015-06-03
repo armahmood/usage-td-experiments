@@ -1,7 +1,7 @@
 '''
-Created on Jun 2, 2014
+Created on January, 2015
 
-@author: ashique
+@author: A Rupam Mahmood
 '''
 
 import numpy as np
