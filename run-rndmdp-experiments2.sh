@@ -11,3 +11,5 @@ time python pysrc/experiments/rndmdpexp.py 1000 $runseed results/rndmdp-experime
 done
 done
 
+echo "Invoking matplotlib plot for the experiment ..."
+python ./pysrc/plot/plotrndmdpexp2.py
