@@ -15,7 +15,7 @@ import argparse
 import numpy as np
 from pysrc.problems import mdp
 from pysrc.problems import randommdp
-from pysrc.algorithms.tdprediction.onpolicy import td, tdr, totd
+from pysrc.algorithms.tdprediction.onpolicy import td, totd, utd, utotd
 import copy
 import pickle
 
@@ -52,12 +52,12 @@ def main():
   
   algs  = {
            'td':td.TD,
-           'tdr':tdr.TDR,
            'totd':totd.TOTD,
+           'utd':utd.UTD,
+           'utotd':utotd.UTOTD,
            }
   configprob['mdpseed'] = args.mdpseed
   prob                  = randommdp.RandomMDP(configprob)
-
   print("Running algorithm " + args.algname + ", runseed: " + str(args.runseed) )
   for config in configsalg:
     perf      = mdp.PerformanceMeasure(configprob, prob)
