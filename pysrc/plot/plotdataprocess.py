@@ -60,7 +60,7 @@ def createtablelearningcurves(table, nruns, neps):
     #print np.shape(table[(i)*tableavgrows:(i+1)*tableavgrows, nparams:])
     
   tableavg[:, nparams:] = np.mean(np.reshape(tabletemp, (tableavgrows, nruns, neps)), 1)
-  tablestd[:, nparams:] = np.std(np.reshape(tabletemp, (tableavgrows, nruns, neps)), 1)/np.sqrt(nruns)
+  tablestd[:, nparams:] = np.std(np.reshape(tabletemp, (tableavgrows, nruns, neps)), 1)/np.sqrt(len(tableavgrows))
   
   return (tableavg, tablestd)
 
@@ -78,7 +78,7 @@ def createtableavg(table, nruns, neps, startstep=0):
                 table[(i)*tableavgrows:(i+1)*tableavgrows, (nparams+startstep):]), 1)
     
   tableavgstd[:, nparams] = np.mean(tabletemp, 1)
-  tableavgstd[:, nparams+1] = np.std(tabletemp, 1)/np.sqrt((neps-startstep)*nruns)
+  tableavgstd[:, nparams+1] = np.std(tabletemp, 1)/np.sqrt(len(tabletemp))
   return tableavgstd
   
 def performancevsparams(tableavgstd, params, paramssub):
