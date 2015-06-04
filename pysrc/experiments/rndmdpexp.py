@@ -15,7 +15,7 @@ import argparse
 import numpy as np
 from pysrc.problems import mdp
 from pysrc.problems import randommdp
-from pysrc.algorithms.tdprediction.onpolicy import td, totd, utd, utotd
+from pysrc.algorithms.tdprediction.onpolicy import td, tdr, totd, utd, utotd, utdr
 import copy
 import pickle
 
@@ -53,8 +53,10 @@ def main():
   algs  = {
            'td':td.TD,
            'totd':totd.TOTD,
+           'tdr':tdr.TDR,
            'utd':utd.UTD,
            'utotd':utotd.UTOTD,
+           'utdr':utdr.UTDR
            }
   configprob['mdpseed'] = args.mdpseed
   prob                  = randommdp.RandomMDP(configprob)
