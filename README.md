@@ -9,8 +9,9 @@ Read or execute `run-rndmdp-experiments.sh` for an example of running the experi
 
 ## References
 
-van Seijen, H., Sutton, R.S. (2014). True online TD(lambda). In *Proceedings of the 31st International Conference on Machine Learning*. JMLR W&CP 32(1):692-700.
-
-Mahmood, A.R., Sutton R.S. (2015). Off-policy learning based on weighted importance sampling with linear computational complexity. In *Proceedings of the 301st Conference on Uncertainty in Arti- ficial Intelligence* (forthcoming).
+Mahmood, A. R., Sutton R. S. (2015). Off-policy learning based on weighted importance sampling with linear computational complexity. In *Proceedings of the 301st Conference on Uncertainty in Arti- ficial Intelligence* (forthcoming).
 
 Sutton, R. S., Barto, A. G. (1998). *Reinforcement Learning: An Introduction*. MIT Press.
+
+van Seijen, H., Sutton, R. S. (2014). True online TD(lambda). In *Proceedings of the 31st International Conference on Machine Learning*. JMLR W&CP 32(1):692-700.
+
