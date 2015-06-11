@@ -5,7 +5,9 @@ This project contains random MDP experiments evaluating the usage-based step-siz
 
 This project can be imported as an Eclipse Pydev project.
 
-Read or execute `run-rndmdp-experiments.sh` for an example of running the experiments and plotting the python figures.
+In order to run the experiment on the randomly generated MDP with 10 state and generate plot, execute `run-rndmdp-experiments10.sh`.
+
+In order to run the experiment on the randomly generated MDP with 100 state and generate plot, execute `run-rndmdp-experiments100.sh`.
 
 ## References
 
